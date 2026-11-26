@@ -1,0 +1,22 @@
+{
+  "buildHash": "763f4be9ffd575d768a431fb340048e5",
+  "jsApi": {
+    "apiInstances": [],
+    "apiAliases": {},
+    "apiInterfaces": {},
+    "apiNames": {
+      "check": "String -> Wish a { git :: Boolean, uncommitted :: Boolean, unstaged :: Boolean }"
+    },
+    "apiTypes": {}
+  },
+  "llvmApi": {
+    "apiInstances": [],
+    "apiAliases": {},
+    "apiInterfaces": {},
+    "apiNames": {
+      "check": "String -> Wish a { git :: Boolean, uncommitted :: Boolean, unstaged :: Boolean }"
+    },
+    "apiTypes": {}
+  },
+  "versionHash": "25e64aa754c310d45c1e084d574c1bb0"
+}
