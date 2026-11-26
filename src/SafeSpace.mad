@@ -1,0 +1,47 @@
+// based on https://www.spinics.net/lists/git/msg142043.html
+
+import Fn from "Function"
+import Process from "Process"
+import Wish from "Wish"
+
+
+
+isZeroExit = pipe(
+  .exitCode,
+  Fn.equals(0),
+)
+checkExitCodes = pipe(
+  map(isZeroExit),
+  Wish.mapRej(isZeroExit),
+  chain(Wish.good),
+)
+setWorkingDir = (cwd) => ({ ...Process.DEFAULT_COMMAND_OPTIONS, cwd })
+_git = Process.exec("git")
+// hell yeah ponyboy
+stayGolden = Wish.chainRej(Wish.good)
+// do some async git stuff and coerce to async booleans based on exit codes
+gitgud = (args, cwd) => pipe(
+  setWorkingDir,
+  _git(args),
+  checkExitCodes,
+  stayGolden,
+)(cwd)
+updateIndex = gitgud(["update-index", "-q", "--ignore-submodules", "--refresh"])
+hasUnstagedChanges = gitgud(["diff-files", "--quiet", "--ignore-submodules", "--"])
+hasUncommittedChanges = gitgud([
+  "diff-index",
+  "--cached",
+  "--quiet",
+  "HEAD",
+  "--ignore-submodules",
+  "--",
+])
+export check = pipe(
+  (cwd) => do {
+    git <- updateIndex(cwd)
+    unstaged <- hasUnstagedChanges(cwd)
+    uncommitted <- hasUncommittedChanges(cwd)
+    return of({ git, uncommitted, unstaged })
+  },
+  Wish.chainRej((_) => Wish.good({ git: false, uncommitted: false, unstaged: false })),
+)

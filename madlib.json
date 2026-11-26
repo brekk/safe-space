@@ -1,0 +1,25 @@
+{
+  "name": "safespace",
+  "version": "0.0.1",
+  "main": "src/Main.mad",
+  "importAliases": {
+    ".": "src"
+  },
+  "dependencies": [
+    {
+      "minVersion": "1.0.0",
+      "url": "https://github.com/brekk/party-bus/archive/refs/tags/v1.0.0.zip",
+      "description": "PartyBus"
+    },
+    {
+      "minVersion": "0.1.0",
+      "url": "https://github.com/brekk/study/archive/refs/tags/v0.1.0.zip",
+      "description": "Study"
+    },
+    {
+      "minVersion": "3.0.0",
+      "url": "https://github.com/brekk/shroud/archive/refs/tags/v3.0.0.zip",
+      "description": "shroud"
+    }
+  ]
+}

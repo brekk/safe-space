@@ -1,0 +1,30 @@
+import IO from "IO"
+import List from "List"
+import Maybe from "Maybe"
+import Wish from "Wish"
+
+import SafeSpace from "@/SafeSpace"
+
+
+
+printOutput = Wish.fulfill(
+  pipe(
+    IO.pTrace("bad path"),
+    (_) => {},
+  ),
+  pipe(
+    IO.pTrace("good path"),
+    (_) => {},
+  ),
+)
+main = () => {
+  cwd = pipe(
+    List.drop(1),
+    List.first,
+    Maybe.fromMaybe("./"),
+  )(["/."])
+  pipe(
+    SafeSpace.check,
+    printOutput,
+  )(cwd)
+}
