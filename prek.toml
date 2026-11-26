@@ -19,7 +19,7 @@ hooks = [
   {
     id ="madlib-readme",
     name="madlib readme",
-    entry="pilcrow -i README.md --repo brekk/safe-space --auto",
+    entry="pilcrow --input README.md --repo 'brekk/safe-space' --auto",
     language="system",
     files = "README\\.md$|madlib\\.json$",
     verbose=true
