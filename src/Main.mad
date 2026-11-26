@@ -7,24 +7,33 @@ import SafeSpace from "@/SafeSpace"
 
 
 
-printOutput = Wish.fulfill(
+printOutput = (k) => Wish.fulfill(
   pipe(
     IO.pTrace("bad path"),
     (_) => {},
   ),
   pipe(
-    IO.pTrace("good path"),
+    IO.pTrace(k),
     (_) => {},
   ),
 )
-main = () => {
-  cwd = pipe(
-    List.drop(1),
-    List.first,
-    Maybe.fromMaybe("./"),
-  )(["/."])
+getCWD = pipe(
+  List.drop(1),
+  List.first,
+  Maybe.fromMaybe("./"),
+)
+main = (args) => {
+  cwd = getCWD(args)
   pipe(
     SafeSpace.check,
-    printOutput,
+    printOutput("check"),
+  )(cwd)
+  pipe(
+    SafeSpace.getUncommitted,
+    printOutput("uncommitted"),
+  )(cwd)
+  pipe(
+    SafeSpace.getUnstaged,
+    printOutput("unstaged"),
   )(cwd)
 }

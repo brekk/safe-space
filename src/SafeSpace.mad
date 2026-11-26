@@ -1,7 +1,10 @@
 // based on https://www.spinics.net/lists/git/msg142043.html
-
+import Dict from "Dictionary"
 import Fn from "Function"
+import List from "List"
 import Process from "Process"
+import String from "String"
+import Tuple from "Tuple"
 import Wish from "Wish"
 
 
@@ -28,6 +31,41 @@ gitgud = (args, cwd) => pipe(
 )(cwd)
 updateIndex = gitgud(["update-index", "-q", "--ignore-submodules", "--refresh"])
 hasUnstagedChanges = gitgud(["diff-files", "--quiet", "--ignore-submodules", "--"])
+processNameStatusPairs = map(
+  pipe(
+    .stdout,
+    String.trim,
+    String.lines,
+    map(
+      pipe(
+        String.split("\t"),
+        where {
+          [k, v] =>
+            #[v, k]
+
+          _ =>
+            #["", ""]
+        },
+      ),
+    ),
+    List.reject(
+      pipe(
+        Tuple.fst,
+        String.isEmpty,
+      ),
+    ),
+  ),
+)
+export getUncommitted = pipe(
+  setWorkingDir,
+  _git(["diff-index", "--ignore-submodules", "--name-status", "HEAD"]),
+  processNameStatusPairs,
+)
+export getUnstaged = pipe(
+  setWorkingDir,
+  _git(["diff-files", "--ignore-submodules", "--name-status"]),
+  processNameStatusPairs,
+)
 hasUncommittedChanges = gitgud([
   "diff-index",
   "--cached",
