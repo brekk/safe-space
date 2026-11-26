@@ -22,7 +22,8 @@ hooks = [
     entry="pilcrow --input README.md --repo 'brekk/safe-space' --auto",
     language="system",
     files = "README\\.md$|madlib\\.json$",
-    verbose=true
+    verbose=true,
+    pass_filenames = false
   },
   {
     id ="madlib-test",
