@@ -3,7 +3,7 @@
 do stuff with version control awareness
 
 [![Madlib Project Badge](https://img.shields.io/badge/madlib-purple?logo=github&logoSize=auto)](//github.com/madlib-lang/madlib) <!-- $MADLIB.projectBadge -->
-[![safespace v0.0.1](https://img.shields.io/badge/v0.0.1-purple?label=version)](//github.com/brekk/safe-space) <!-- $MADLIB.json.version -->
+[![safespace v0.1.0](https://img.shields.io/badge/v0.1.0-purple?label=version)](//github.com/brekk/safe-space) <!-- $MADLIB.json.version -->
 
 ---
 ## Usage

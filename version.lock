@@ -1,10 +1,12 @@
 {
-  "buildHash": "07d290c84e79041bdc4e33038bee8758",
+  "buildHash": "0d764bde803622d3c1a52eff841e8bff",
   "jsApi": {
     "apiInstances": [],
     "apiAliases": {},
     "apiInterfaces": {},
     "apiNames": {
+      "getUncommitted": "String -> Wish { exitCode :: Integer, stderr :: String, stdout :: String } (List #[String, String])",
+      "getUnstaged": "String -> Wish { exitCode :: Integer, stderr :: String, stdout :: String } (List #[String, String])",
       "check": "String -> Wish a { git :: Boolean, uncommitted :: Boolean, unstaged :: Boolean }"
     },
     "apiTypes": {}
@@ -14,9 +16,11 @@
     "apiAliases": {},
     "apiInterfaces": {},
     "apiNames": {
+      "getUncommitted": "String -> Wish { exitCode :: Integer, stderr :: String, stdout :: String } (List #[String, String])",
+      "getUnstaged": "String -> Wish { exitCode :: Integer, stderr :: String, stdout :: String } (List #[String, String])",
       "check": "String -> Wish a { git :: Boolean, uncommitted :: Boolean, unstaged :: Boolean }"
     },
     "apiTypes": {}
   },
-  "versionHash": "fbacc30a1f288ebf360ad2de66710082"
+  "versionHash": "e5d18b4e2c1dc1975775ee385ab41c85"
 }
